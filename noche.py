@@ -91,8 +91,8 @@ def run (path, fecha, mode = 'prueba'):                 #enviar correos mode ='p
 
 
 if __name__ == "__main__":
-    # path = "/mnt/almacenamiento/Emmanuel_Castillo/NOCHE"
-    path = "/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin"
+    repository = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(repository,'bin')
     fecha = input("\n\tfecha YYYYMMDD:  ")
-    run (path, fecha, mode='prueba')
+    run(path, fecha, mode='prueba')
 
