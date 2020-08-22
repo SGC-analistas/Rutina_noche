@@ -1,12 +1,14 @@
 ###
+# v2.0
 # Autor: Emmanuel Castillo | ecastillo@sgc.gov.co
-# Se creo la clase SGC_performance para : 
+#   Se hiceron mejoras a la rutina funest_json2.py 
+#   Las mejoras consisten en : -optimización, -se implemento en modo OOP para generalizar en futuras rutinas
+#   Se creo la clase SGC_performance para : 
 #       -obtener un inventory con base a unas restricciones
 #       -obtener porcentajes a partir de un inventory
 #       -obtener un json para la rutina de la noche
-#
-# Se hiceron mejoras a la rutina funest_json2.py realizada por Ángel Agudelo adagudelo@sgc.gov.co
-# Las mejoras consisten en : -optimización, -se implemento en modo OOP para generalizar en futuras rutinas
+# V1.0
+# Autor: Ángel Agudelo | adagudelo@sgc.gov.co
 ###
 
 from obspy.core.stream import _headonly_warning_msg
@@ -22,7 +24,7 @@ import time
 RSNC_off = {'network':'*',\
             'station': 'LL*,HI*,VMM*,PG*,ACH*,' +\
                         'BRR,AGCC,CAQC,COBO,EZNC,FOM,MTTC,OCNC,QUET,RGSC,' +\
-                        'SBTC,SML1C,SMORC,SNPBC,TVCAC,PGA1B',\
+                        'SBTC,SML1C,SMORC,SNPBC,TVCAC,PGA1B,DORAC',\
             'location':'*',\
             'channel':'*'}
 
@@ -306,19 +308,37 @@ class SGC_Performance(object):
             dictionary of dictionaries where de deep dictionary contains the percentage
         """
         perc_dict={}
-        for key in inv_dict.keys():
+        keys = list(inv_dict.keys())
 
-            contents = inv_dict[key].get_contents()['channels']
-            tic = time.time()
-            with concurrent.futures.ProcessPoolExecutor() as executor:
-                percentages = executor.map(self._percentage_executor,contents )
-                contents_dict = dict(zip(contents,percentages))
-            perc_dict[key] = contents_dict
+        inv_towork = inv_dict[keys[0]].copy()
+        for i in range(1,len(keys)):
+            inv_towork +=  inv_towork.__add__(inv_dict[keys[i]])
 
-            toc = time.time()
-            print('\t\t',  "{0:>15}".format(key+': OK'),'\t\t',
-                "{0:>15}".format(f'# stations: {len(contents)}'),'\t\t',
-                "{0:>15}".format(f'delay: {toc-tic:.2f}s'))
+        contents = inv_towork.get_contents()['channels']
+        contents = list(dict.fromkeys(contents))
+
+        tic = time.time()
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            percentages = executor.map(self._percentage_executor,contents )
+            perc_dict = dict(zip(contents,percentages))
+        toc = time.time()
+        print("{0:>15}".format(f'delay: {toc-tic:.2f}s'))
+
+        # # HACERLO POR ESTACIONES
+        # perc_dict={}
+        # for key in inv_dict.keys():
+
+            # contents = inv_dict[key].get_contents()['channels']
+            # tic = time.time()
+            # with concurrent.futures.ProcessPoolExecutor() as executor:
+                # percentages = executor.map(self._percentage_executor,contents )
+                # contents_dict = dict(zip(contents,percentages))
+            # perc_dict[key] = contents_dict
+
+            # toc = time.time()
+            # print('\t\t',  "{0:>15}".format(key+': OK'),'\t\t',
+                # "{0:>15}".format(f'# stations: {len(contents)}'),'\t\t',
+                # "{0:>15}".format(f'delay: {toc-tic:.2f}s'))
 
         return perc_dict
 
@@ -355,7 +375,8 @@ class SGC_Performance(object):
                         SGC["estacion"] = station.code
                         SGC["longitud"] = station.longitude
                         SGC["latitud"] = station.latitude
-                        SGC["valor"], SGC["#Gaps"] = perc_dict[key][content]
+                        # SGC["valor"], SGC["#Gaps"] = perc_dict[key][content] #POR ESTACION
+                        SGC["valor"], SGC["#Gaps"] = perc_dict[content]
 
                         jsonlist.append(SGC.copy())
         return jsonlist
@@ -373,5 +394,7 @@ if __name__ == "__main__":
     filename = 'funest.json'
 
     sgc_perf = SGC_Performance(ip_fdsn, port_fdsn, starttime,endtime)
+    # inv_dict = sgc_perf.inv()
+    # sgc_perf._get_percentage_dict(inv_dict)
     sgc_perf.create_json(filename,on_stations=ON_stations,
                         off_stations=OFF_stations)

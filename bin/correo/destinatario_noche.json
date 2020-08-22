@@ -1,0 +1,29 @@
+[
+    {
+    "NET" : "RSNC",
+    "CORREOS":[
+        "hchamorro@sgc.gov.co",
+        "oriobamba@sgc.gov.co",
+        "ecastillo@sgc.gov.co",
+        "adagudelo@sgc.gov.co"
+        ]
+    },
+    {
+    "NET":"RNAC",
+    "CORREOS":[
+        "hchamorro@sgc.gov.co",
+        "oriobamba@sgc.gov.co",
+        "ecastillo@sgc.gov.co",
+        "adagudelo@sgc.gov.co"
+        ]
+    },
+    {
+    "NET":"DRL",
+    "CORREOS":[
+        "hchamorro@sgc.gov.co",
+        "oriobamba@sgc.gov.co",
+        "ecastillo@sgc.gov.co",
+        "adagudelo@sgc.gov.co"
+        ]
+    }
+]
