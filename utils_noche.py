@@ -348,13 +348,12 @@ def func_map(path,network, date):    #crear mapa
         parallels, meridians= np.arange(9.2,9.9,0.2) , np.arange(-73.8,-73.2,0.2)
     
     plt.title(title_to_map, fontproperties=font_prop2) 
-    m = Basemap(resolution='i',projection='cyl',llcrnrlon=llcrnrlon,llcrnrlat=llcrnrlat,urcrnrlon=urcrnrlon,urcrnrlat=urcrnrlat)      
+    m = Basemap(resolution='i',projection='cyl',llcrnrlon=llcrnrlon,llcrnrlat=llcrnrlat,urcrnrlon=urcrnrlon,urcrnrlat=urcrnrlat)  
     m.arcgisimage(service='World_Shaded_Relief',xpixels = 1500, dpi=300, verbose= False)
     m.drawstates(linewidth=0.3, linestyle='solid', color='grey')
     m.drawcountries(color='#303338',linewidth=1.5)
     m.drawparallels(parallels,labels=[False,True,True,False],linewidth=0.15,labelstyle="+/-")
     m.drawmeridians(meridians,labels=[True,False,False,True],linewidth=0.15,labelstyle="+/-")
-
     x,y = m(latitud,longitud)
 
     sc = plt.scatter(x,y, c=percentage, cmap=cmap, norm=norm, s=0, edgecolors='none')
@@ -564,6 +563,7 @@ def correo_problema(path, date, mode='prueba'):
     print (f"Problema enviado a {addressee}")
 
 if __name__ == "__main__":
-    PATH = "/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin"
-    # func_map(PATH,'RSNC','20200104')
-    correo_problema(PATH,'20200108')
+    repository = os.path.dirname(os.path.abspath(__file__))
+    PATH = os.path.join(repository,'bin')
+    func_map(PATH,'RSNC','20200820')
+    # correo_problema(PATH,'20200108')

@@ -324,14 +324,15 @@ if __name__ == "__main__":
     port_fdsn = "8091"
     starttime = UTCDateTime(2020,8,20,0,0,0)
     endtime = UTCDateTime(2020,8,21,0,0,0)
-    filename = 'funest.json'
-
-    in_dict = {'DRL':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_DRL.in',
-                'RSNC':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_RSNC.in',
-                'RNAC':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_RNAC.in',
-                'INTER':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_INTER.in',
-                'SUB':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_RSNC.in'}
+    filename = 'prove.json'
+    repository = os.path.dirname(os.path.abspath(__file__))
+    PATH = os.path.join(repository,'bin')
+    in_dict = {'DRL':os.path.join(PATH,'on_stations/est_DRL.in'),
+                'RSNC':os.path.join(PATH,'on_stations/est_RSNC.in'),
+                'RNAC':os.path.join(PATH,'on_stations/est_RNAC.in'),
+                'INTER':os.path.join(PATH,'on_stations/est_INTER.in'),
+                'SUB':os.path.join(PATH,'on_stations/est_RSNC.in')}
     sgc_perf = SGC_Performance(ip_fdsn, port_fdsn, starttime,endtime)
     # sgc_perf.inventories(in_dict)
-    sgc_perf.create_json('prove.json',in_dict)
+    sgc_perf.create_json(filename,in_dict)
     # sgc_perf._get_percentage_dict(inv_dict)
