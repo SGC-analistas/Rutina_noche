@@ -1,4 +1,4 @@
-# 1. Instalación y en linux
+# 1. Instalación en linux
 Asegurate de hacer lo siguiente para poder correr basemap
 
 ```bash
