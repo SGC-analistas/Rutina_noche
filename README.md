@@ -9,8 +9,10 @@ sudo ln -s libgeos-3.3.3.so libgeos.so.1
 ```
 
 ## Anaconda
+```bash
 conda env create -f noche_env.yml
 conda activate env
+```
 
 ## Virtualenv
 
@@ -30,11 +32,3 @@ python noche.py
 ```
 
 más adelante se hará una pequeña demostración.
-
-
-
-
-
-
-
-Luego de ello
