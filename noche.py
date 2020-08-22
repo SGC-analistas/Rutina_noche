@@ -10,7 +10,6 @@ import itertools
 import warnings
 import utils_noche as no
 import concurrent.futures
-from funest import SGC_Performance
 from colorama import init, Fore, Back
 init(autoreset=True)
 
@@ -20,10 +19,11 @@ def map_hist(net,fecha,path):
     histo= no.histograma(path,net,fecha)								#crear histogramas
     return histo, mapa
 
-def run (path, fecha):
-    estaciones = ["RSNC","RNAC","SUB","DRL","INTER"]
+def run (path, fecha, mode = 'prueba'):                 #enviar correos mode ='prueba' o 'noche'
+    nets = ["RSNC","RNAC","SUB","DRL","INTER"]
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
+
 
         json_file = os.path.join(path,'jsons',f'datasta{fecha}.json')
         if os.path.isfile(json_file) == True:
@@ -34,24 +34,30 @@ def run (path, fecha):
                 p = input()
                 if p == "1":
                     print(f'...loading json: {fecha}')
-                    no.fun_json(path,fecha) 
+                    tic = time.time()
+                    no.fun_json(path,fecha,nets) 
+                    toc = time.time()
+                    print("{0:>15}".format(f'json delay: {toc-tic:.2f}s'))
                     break
                 elif p == "0":    
                     break
         else:
-            no.fun_json(path,fecha) 
+            tic = time.time()
+            no.fun_json(path,fecha,nets) 
+            toc = time.time()
+            print("{0:>15}".format(f'json delay: {toc-tic:.2f}s'))
 
 
         print(f'...loading txts: {fecha}')
         no.edit_fun(path,fecha) 		#para editar los txt
-        for net in estaciones:
+        for net in nets:
             os.system(f"nano {path}/txt/func{net}{fecha}.txt")
 
 
         pdf_file=[]
         with concurrent.futures.ProcessPoolExecutor() as executor:
             print(f'...loading maps: {fecha}')
-            results= executor.map( map_hist, estaciones , itertools.repeat(fecha), itertools.repeat(path))
+            results= executor.map( map_hist, nets , itertools.repeat(fecha), itertools.repeat(path))
             for result in results:  
                 pdf_file.append(result[0])
                 pdf_file.append(result[1])
@@ -71,14 +77,14 @@ def run (path, fecha):
             print(Fore.GREEN + "\t 1","[si]","    ",Fore.RED + "0","[no]"  )
             p = input()
             if p == "1":
-                no.correo_noche(path,fecha,mode='prueba')
+                no.correo_noche(path,fecha,mode=mode)
                 break
             if p == "0":
                 print(Fore.RED +"¿Desea informar el problema?.")
                 print(Fore.GREEN + "\t 1","[si]","    ",Fore.RED + "0","[no]"  )
                 p = input()
                 if p == "1":
-                    no.correo_problema(path,fecha,mode='prueba')
+                    no.correo_problema(path,fecha,mode=mode)
                     break
                 if p == "0":
                     break
@@ -88,5 +94,5 @@ if __name__ == "__main__":
     # path = "/mnt/almacenamiento/Emmanuel_Castillo/NOCHE"
     path = "/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin"
     fecha = input("\n\tfecha YYYYMMDD:  ")
-    run (path, fecha)
+    run (path, fecha, mode='prueba')
 

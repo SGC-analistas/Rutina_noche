@@ -370,7 +370,7 @@ def func_map(path,network, date):    #crear mapa
     return f"{path}/maps/map_{network}_{date}.pdf"
     #~ os.system(f"evince -f {path}/maps/map_{network}_{date}.pdf")    
 
-def fun_json(path, date):
+def fun_json(path, date, networks):
 
     ip_fdsn = "http://10.100.100.232"
     port_fdsn = "8091"
@@ -380,8 +380,14 @@ def fun_json(path, date):
                             int(date[4:6]),\
                             int(date[6:8]),0,0,0)
     endtime = starttime + datetime.timedelta(days=1)
+
+    in_dict = {}
+    for network in networks:
+        in_path = os.path.join(path, 'on_stations', f'est_{network}.in')
+        in_dict[network] = in_path
+
     sgc_perf = SGC_Performance(ip_fdsn, port_fdsn, starttime,endtime)
-    sgc_perf.create_json(filepath)
+    sgc_perf.create_json(filepath,in_dict)
 
 def correo_noche(path, date, mode='prueba'):         #enviar correos mode ='prueba' o 'noche'
     
@@ -536,6 +542,9 @@ def correo_problema(path, date, mode='prueba'):
     msg['Subject'] = asunto
     msg.attach(MIMEText(mensaje, 'html'))
     #~ 
+
+    """
+    # Es mejor no agregar el pdf al correo de problemas
     print("Espere un momento...")
     for _file in list_files_to_email:
         filename, filedir= _file[0], _file[1]
@@ -546,6 +555,7 @@ def correo_problema(path, date, mode='prueba'):
         part.add_header('Content-Disposition', "attachment; filename= "+filename)   
         msg.attach(part)
         #~ 
+    """
     server = smtplib.SMTP('smtp.gmail.com:25') 
     server.starttls()
     server.login(email_sender,passw_sender)

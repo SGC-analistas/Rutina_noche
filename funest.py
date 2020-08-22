@@ -1,15 +1,16 @@
-###
-# v2.0
-# Autor: Emmanuel Castillo | ecastillo@sgc.gov.co
-#   Se hiceron mejoras a la rutina funest_json2.py 
-#   Las mejoras consisten en : -optimización, -se implemento en modo OOP para generalizar en futuras rutinas
-#   Se creo la clase SGC_performance para : 
-#       -obtener un inventory con base a unas restricciones
-#       -obtener porcentajes a partir de un inventory
-#       -obtener un json para la rutina de la noche
-# V1.0
-# Autor: Ángel Agudelo | adagudelo@sgc.gov.co
-###
+"""
+python 3.7.4
+v2.0   Autor: Emmanuel Castillo | ecastillo@sgc.gov.co
+          Se hiceron mejoras a la rutina funest_json2.py 
+          Las mejoras consisten en : -optimización, -se implemento en modo OOP para generalizar en futuras rutinas
+          Se creo la clase SGC_performance para : 
+              -obtener un inventory con base a unas restricciones
+              -obtener porcentajes a partir de un inventory
+              -obtener un json para la rutina de la noche
+"""
+"""
+V1.0   Autor: Ángel Agudelo | adagudelo@sgc.gov.co
+"""
 
 from obspy.core.stream import _headonly_warning_msg
 from obspy.clients.fdsn import Client
@@ -19,34 +20,6 @@ import numpy as np
 import json
 import warnings
 import time
-
-
-RSNC_off = {'network':'*',\
-            'station': 'LL*,HI*,VMM*,PG*,ACH*,' +\
-                        'BRR,AGCC,CAQC,COBO,EZNC,FOM,MTTC,OCNC,QUET,RGSC,' +\
-                        'SBTC,SML1C,SMORC,SNPBC,TVCAC,PGA1B,DORAC',\
-            'location':'*',\
-            'channel':'*'}
-
-RNAC_off = {'network':'CM',
-            'station':'DRL*,TOL,CMOC6,CPER3,CREAC,CTRUJ,CUIBA,',\
-            'location':'*',\
-            'channel':'*'}
-
-INTER_off = {'network':'*',\
-            'station': 'CONO,POTN,SOMN,LIMN,HUEN,RCON,NANN,' +\
-                        'MATN,CARN,CLMA,NIMA,APQN', \
-            'location':'*',\
-            'channel':'*'}
-
-INTER_EC_on = {'network':'EC',\
-            'station':'PPLP,PTGL,MCRA,FLF1,COHC,PAC1,CUSE,PIAT,TULM,BONI',\
-            'location':'*',\
-            'channel':'*Z'}
-
-OFF_stations = { 'RSNC':RSNC_off, 'RNAC':RNAC_off, 'INTER':INTER_off} #ALWAYS THE KEY NAME MUST HAVE THE NAME WHERE IT BELONGS. ex: DRL,RSNC,RNAC...
-ON_stations = {'INTER_EC':INTER_EC_on} #ALWAYS THE KEY NAME MUST HAVE THE NAME WHERE IT BELONGS. 
-
 
 class SGC_Performance(object):
     def __init__(self, ip_fdsn, port_fdsn, starttime,endtime):
@@ -59,140 +32,75 @@ class SGC_Performance(object):
     def sgc_client(self):
         return Client(self.ip_fdsn+":"+self.port_fdsn)
 
-    @property
-    def __RSNC_inv(self):
-        inv = self.sgc_client.get_stations(network='CM', 
-                                            location="00,20",
-                                            channel = "*Z",
-                                            starttime=self.starttime,
-                                            endtime=self.endtime,
-                                            level="channel")
-        return inv
-
-    @property
-    def __DRL_inv(self):
-        inv = self.sgc_client.get_stations(network='CM',
-                                            station='DRL*',
-                                            channel = "*Z",
-                                            starttime=self.starttime,
-                                            endtime=self.endtime,
-                                            level="channel")
-        return inv
-
-    @property
-    def __RNAC_inv(self):
-        inv = self.sgc_client.get_stations(network='CM',
-                                            location="10",
-                                            channel = "*Z",
-                                            starttime=self.starttime,
-                                            endtime=self.endtime,
-                                            level="channel")
-        return inv
-
-    @property
-    def __INTER_inv(self):
-        inter_net= "CU,BR,IU,VE,GT,II,IU,NU,OM,OP,PA,PR,RP"
-        inv = self.sgc_client.get_stations(network=inter_net,
-                                            channel = "*Z",
-                                            starttime=self.starttime,
-                                            endtime=self.endtime,
-                                            level="channel")
-        return inv
-
-    @property
-    def __SUB_inv(self):
-        inv = self.sgc_client.get_stations(network='CM',
-                                            station='CVER,TABC',
-                                            location ='00,20',
-                                            channel = "*Z",
-                                            starttime=self.starttime,
-                                            endtime=self.endtime,
-                                            level="channel")
-        return inv
-
-    def __ON_inv(self, network, station, location, channel):
-        inv = self.sgc_client.get_stations(network=network,
-                            station=station,
-                            location= location,
-                            channel = channel,
+    def __on_inv(self, stations, locations):
+        inv = self.sgc_client.get_stations(network="*",
+                            station=stations,
+                            location= locations,
+                            channel = "*Z",
                             starttime=self.starttime,
                             endtime=self.endtime,
                             level="channel")
         return inv
 
-    def _remove(self, inv, net_dict):
-
-        networks = net_dict['network'].split(',')
-        stations = net_dict['station'].split(',')
-        locations = net_dict['location'].split(',')
-        channels = net_dict['channel'].split(',')
-        for network in networks :
-            for station in stations :
-                for location in locations :
-                    for channel in channels :
-                        inv = inv.remove(network=network,
-                                        station=station,
-                                        location=location,
-                                        channel=channel)
-        return inv
-
-    def _inv(self, on_stations=ON_stations,off_stations=OFF_stations):
+    def _read_in(self, in_path):
         """
         parameters
         ----------
-        on_stations: dict
-            dict that contains information about on stations
-        off_stations: dict
-            dict that contains information about off stations
-        
-        returns
-        -------
-        inv_dict: dict
-            dict that contains the next inventories: 'RSNC', 'RNAC','DRL','SUB','INTER' 
-        """
-
-        RSNC_inv = self.__RSNC_inv
-        RNAC_inv = self.__RNAC_inv
-        DRL_inv = self.__DRL_inv
-        SUB_inv = self.__SUB_inv
-        INTER_inv = self.__INTER_inv
-
-        invs = [('RSNC',RSNC_inv),('RNAC',RNAC_inv),\
-                ('DRL',DRL_inv),('SUB',SUB_inv),\
-                ('INTER',INTER_inv )]
-        
-        inv_dict={}
-        for admin,inv in invs:
-            off_key = [key for key in off_stations.keys() if admin in key]
-            for key in off_key:
-                inv = self._remove(inv,off_stations[key])
-            
-            on_key = [key for key in on_stations.keys() if admin in key]
-            for key in on_key:
-                on_inv = self.__ON_inv(network=on_stations[key]['network'],
-                                      station=on_stations[key]['station'],
-                                      location=on_stations[key]['location'],
-                                      channel=on_stations[key]['channel'] )
-                inv= inv.__add__(on_inv)
-            inv_dict[admin]= inv.copy()
-            
-        return inv_dict
-
-    def inv(self, on_stations=ON_stations,off_stations=OFF_stations):
-        """
-        parameters
-        ----------
-        on_stations: dict
-            dict that contains information about on stations
-        off_stations: dict
-            dict that contains information about off stations
+        in_file: str
+            path of the in_file that contains information about on stations
                 
         returns
         -------
+        strings for pass them to a client.get_Stations methods
+
+        stations: str
+            stations for pass them to a client.get_Stations methods
+        locations: str
+            locations for pass them to a client.get_Stations methods
+        network: str
+            network for pass them to a client.get_Stations methods
+        """
+        read_stations = open(in_path,"r").readlines()
+        stations, locations, networks = [], [], []
+        for station in read_stations:
+            station_parameters = station.strip().split(",")
+            first_letter = station_parameters[0][0:1]
+            if str(first_letter) != "#":
+                sta, loc, net = station_parameters
+                stations.append(sta.strip())
+                locations.append(loc.strip())
+                networks.append(net.strip())
+
+        stations = list(dict.fromkeys(stations))
+        locations = list(dict.fromkeys(locations))
+        networks = list(dict.fromkeys(networks))
+
+        stations = ','.join(stations )
+        locations = ','.join(locations)
+        networks = ','.join(networks)
+
+        return stations, locations, networks
+
+    def _inventories(self, in_dict):
+        """
+        parameters
+        ----------
+        in_dict: dictionary
+            Each key and value of the dictionary corresponds 
+            to the network of the routine and the respective in_file path.
+
+        returns
+        -------
         inv_dict: dict
             dict that contains the next inventories: 'RSNC', 'RNAC','DRL','SUB','INTER' 
         """
-        return self._inv(on_stations,off_stations)
+        inv_dict = {}
+        for net,in_path in in_dict.items():
+            stations, locations, _ = self._read_in(in_path)
+            inv = self.__on_inv(stations, locations)
+            inv_dict[net] = inv
+        
+        return inv_dict
 
     def _get_availability_percentage(self, network, station, location, channel,
                                     starttime, endtime):
@@ -322,7 +230,7 @@ class SGC_Performance(object):
             percentages = executor.map(self._percentage_executor,contents )
             perc_dict = dict(zip(contents,percentages))
         toc = time.time()
-        print("{0:>15}".format(f'delay: {toc-tic:.2f}s'))
+        print("{0:>15}".format(f'json delay: {toc-tic:.2f}s'))
 
         # # HACERLO POR ESTACIONES
         # perc_dict={}
@@ -355,8 +263,20 @@ class SGC_Performance(object):
         """
         return self._get_percentage_dict(inv_dict)
 
-    def _create_json(self, on_stations=ON_stations, off_stations=OFF_stations):
-        inv_dict = self._inv(on_stations, off_stations)
+    def _create_json(self, in_dict):
+        """
+        parameters
+        ----------
+        in_dict: dictionary
+            Each key and value of the dictionary corresponds 
+            to the network of the routine and the respective in_file path.
+        returns
+        -------
+        jsonlist: list
+            list of dictionaries that contains information about the stations 
+            in the network of the in_dict 
+        """
+        inv_dict = self._inventories(in_dict)
         perc_dict = self._get_percentage_dict(inv_dict)
         
         jsonlist= []
@@ -381,20 +301,37 @@ class SGC_Performance(object):
                         jsonlist.append(SGC.copy())
         return jsonlist
 
-    def create_json(self, filepath, on_stations=ON_stations, off_stations=OFF_stations):
-        json2 = self._create_json(on_stations,off_stations)
+    def create_json(self, filepath, in_dict):
+        """
+        parameters
+        ----------
+        filepath: str
+            name of the json file
+        in_dict: dictionary
+            Each key and value of the dictionary corresponds 
+            to the network of the routine and the respective in_file path.
+
+        returns
+        -------
+        creates a json file with name entered in filepath variable
+        """
+        json2 = self._create_json(in_dict)
         with open(filepath,"w") as jsonfile:
             json.dump(json2, jsonfile)
 
 if __name__ == "__main__":
     ip_fdsn = "http://10.100.100.232"
     port_fdsn = "8091"
-    starttime = UTCDateTime(2020,7,31,0,0,0)
-    endtime = UTCDateTime(2020,8,1,0,0,0)
+    starttime = UTCDateTime(2020,8,20,0,0,0)
+    endtime = UTCDateTime(2020,8,21,0,0,0)
     filename = 'funest.json'
 
+    in_dict = {'DRL':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_DRL.in',
+                'RSNC':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_RSNC.in',
+                'RNAC':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_RNAC.in',
+                'INTER':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_INTER.in',
+                'SUB':'/mnt/almacenamiento/Emmanuel_Castillo/git_EDCT/SGC/SGC_noche/bin/on_stations/est_RSNC.in'}
     sgc_perf = SGC_Performance(ip_fdsn, port_fdsn, starttime,endtime)
-    # inv_dict = sgc_perf.inv()
+    # sgc_perf.inventories(in_dict)
+    sgc_perf.create_json('prove.json',in_dict)
     # sgc_perf._get_percentage_dict(inv_dict)
-    sgc_perf.create_json(filename,on_stations=ON_stations,
-                        off_stations=OFF_stations)
