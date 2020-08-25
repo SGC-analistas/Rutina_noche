@@ -1,0 +1,20 @@
+[
+    {
+    "NET" : "RSNC",
+    "CORREOS":[
+        "ecastillo@sgc.gov.co"
+        ]
+    },
+    {
+    "NET":"RNAC",
+    "CORREOS":[
+        "ecastillo@sgc.gov.co"
+        ]
+    },
+    {
+    "NET":"DRL",
+    "CORREOS":[
+        "ecastillo@sgc.gov.co"
+        ]
+    }
+]

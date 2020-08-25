@@ -225,12 +225,12 @@ class SGC_Performance(object):
         contents = inv_towork.get_contents()['channels']
         contents = list(dict.fromkeys(contents))
 
-        tic = time.time()
+        # tic = time.time()
         with concurrent.futures.ProcessPoolExecutor() as executor:
             percentages = executor.map(self._percentage_executor,contents )
             perc_dict = dict(zip(contents,percentages))
-        toc = time.time()
-        print("{0:>15}".format(f'json delay: {toc-tic:.2f}s'))
+        # toc = time.time()
+        # print("{0:>15}".format(f'json delay: {toc-tic:.2f}s'))
 
         # # HACERLO POR ESTACIONES
         # perc_dict={}

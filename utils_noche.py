@@ -350,6 +350,7 @@ def func_map(path,network, date):    #crear mapa
     plt.title(title_to_map, fontproperties=font_prop2) 
     m = Basemap(resolution='i',projection='cyl',llcrnrlon=llcrnrlon,llcrnrlat=llcrnrlat,urcrnrlon=urcrnrlon,urcrnrlat=urcrnrlat)  
     m.arcgisimage(service='World_Shaded_Relief',xpixels = 1500, dpi=300, verbose= False)
+    # m.rsnc_shadedrelief() 
     m.drawstates(linewidth=0.3, linestyle='solid', color='grey')
     m.drawcountries(color='#303338',linewidth=1.5)
     m.drawparallels(parallels,labels=[False,True,True,False],linewidth=0.15,labelstyle="+/-")
@@ -365,6 +366,7 @@ def func_map(path,network, date):    #crear mapa
         plt.text(x[i], y[i], name[i],size=5.5,ha='center', weight="bold", bbox=dict(facecolor=color_box[i], edgecolor='black',pad=1))
         #plt.text(x[i], y[i],name[i], fontproperties=font_prop1)
 
+    # plt.savefig(f'/home/ecastillo/git/SGC/SGC_noche/map_noche.png')
     plt.savefig(f'{path}/maps/map_{network}_{date}.pdf')
     return f"{path}/maps/map_{network}_{date}.pdf"
     #~ os.system(f"evince -f {path}/maps/map_{network}_{date}.pdf")    
@@ -375,9 +377,9 @@ def fun_json(path, date, networks):
     port_fdsn = "8091"
     filename = f'datasta{date}.json'
     filepath = os.path.join(path,'jsons',filename)
-    starttime = UTCDateTime(int(date[0:4]),\
-                            int(date[4:6]),\
-                            int(date[6:8]),0,0,0)
+    starttime = UTCDateTime(int(str(date[0:4])),\
+                            int(str(date[4:6])),\
+                            int(str(date[6:8])),0,0,0)
     endtime = starttime + datetime.timedelta(days=1)
 
     in_dict = {}
@@ -565,5 +567,7 @@ def correo_problema(path, date, mode='prueba'):
 if __name__ == "__main__":
     repository = os.path.dirname(os.path.abspath(__file__))
     PATH = os.path.join(repository,'bin')
+
+    PATH = '/home/ecastillo'
     func_map(PATH,'RSNC','20200820')
     # correo_problema(PATH,'20200108')
