@@ -321,11 +321,11 @@ def func_map(path,network, date):    #crear mapa
     im = np.array(im).astype(np.float) / 255
     fig.figimage(im, fig.bbox.xmax - width -40, fig.bbox.ymax - height-20)
     
-    im2 = Image.open(f'{path}/logos/logo_MIN.png')
-    im2.thumbnail((1059,481), Image.ANTIALIAS)
-    width2, height2= im2.size[0],im2.size[1]
-    im2 = np.array(im2).astype(np.float) / 255
-    fig.figimage(im2, fig.bbox.xmax - width2 -40, height2)
+    # im2 = Image.open(f'{path}/logos/logo_MIN.png')
+    # im2.thumbnail((1059,481), Image.ANTIALIAS)
+    # width2, height2= im2.size[0],im2.size[1]
+    # im2 = np.array(im2).astype(np.float) / 255
+    # fig.figimage(im2, fig.bbox.xmax - width2 -40, height2)
 
 
     cmap = mpl.colors.ListedColormap(['red','orange','yellow','deepskyblue', 'limegreen'])
