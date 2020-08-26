@@ -2,28 +2,29 @@
     {
     "NET" : "RSNC",
     "CORREOS":[
-        "hchamorro@sgc.gov.co",
-        "oriobamba@sgc.gov.co",
-        "ecastillo@sgc.gov.co",
-        "adagudelo@sgc.gov.co"
+        "l_electronica-rsnc@sgc.gov.co",
+        "l_sistemas-rsnc@sgc.gov.co",
+        "sismologo@sgc.gov.co",
+        "rsncol@sgc.gov.co"
         ]
     },
     {
     "NET":"RNAC",
     "CORREOS":[
-        "hchamorro@sgc.gov.co",
-        "oriobamba@sgc.gov.co",
-        "ecastillo@sgc.gov.co",
-        "adagudelo@sgc.gov.co"
+        "l_rnac@sgc.gov.co",
+        "rsncol@sgc.gov.co" 
         ]
     },
     {
     "NET":"DRL",
     "CORREOS":[
-        "hchamorro@sgc.gov.co",
-        "oriobamba@sgc.gov.co",
-        "ecastillo@sgc.gov.co",
-        "adagudelo@sgc.gov.co"
+        "emayorga@sgc.gov.co",
+        "mlizarazo@sgc.gov.co",
+        "hpoveda@sgc.gov.co",
+        "ldionicio@sgc.gov.co",
+        "omercado@sgc.gov.co",
+        "aordonez@sgc.gov.co",
+        "rsncol@sgc.gov.co" 
         ]
     }
 ]

@@ -1,34 +1,36 @@
-# SGC_nochev1.0
+# SGC_noche v1.0
 
 Rutina realizada para enviar correos con el funcionamiento de las estaciones de la RSNC, RNAC, DRL, SUB, INTER
 
 ## 1. Instalación en linux
-Asegurate de hacer lo siguiente para poder correr basemap
+Asegurate de hacer lo siguiente para poder correr basemap, para que se pueda abrir pdfs con evince y los excel con libreoffice.
 
-## Requerimientos previos
+### Requerimientos previos
 Se corre en sistemas linux.
 
+
+#### Servidor SMTP
+Tener un servidor SMTP *(Simple Mail Transfer Protocol)* el cual es un protocolo básico que permite que los emails viajen a través de Internet. 
+
+#### libgeos
 ```bash
-# libgeos
-sudo apt-get install libgeos-dev
+sudo apt-get install libgeos-dev #para basemap
 cd /usr/lib
 sudo ln -s libgeos-3.3.3.so libgeos.so
 sudo ln -s libgeos-3.3.3.so libgeos.so.1
-
-# evince
-sudo apt-get install evince
-
-# libreoffice 
-sudo apt install libreoffice
 ```
-
-### Anaconda
+#### evince
 ```bash
-conda env create -f noche_env.yml
-conda activate env
+sudo apt-get install evince # para abrir pdfs
+```
+#### libreoffice 
+```bash
+sudo apt install libreoffice #para abrir excel
+
 ```
 
-### Virtualenv
+
+### Instalación con pip 
 
 ```bash
 conda deactivate #En caso de que haya un ambiente de anaconda activo
@@ -36,6 +38,12 @@ pip install virtualenv
 virtualenv .noche_venv
 source .noche_venv/bin/activate
 pip install -r requirements.txt
+```
+
+### Instalación con anaconda
+```bash
+conda env create -f noche_env.yml
+conda activate noche_env
 ```
 
 ## 2. Arquitectura
@@ -96,8 +104,8 @@ Ctrl + x            # para salir
 
 Luego, se abre el siguiente *archivo txt* de la siguiente red. Así hasta terminar las respectivas redes.
 
-### 4. **MAPAS**: 
-En este punto se crean los respectivos mapas. *En esta versión la generación de mapas depende del servidor arcgisonline. Por tanto, por ahora SE NECESITA INTERNET PARA QUE SE GENEREN LOS MAPAS*. **El tiempo que demora la generación de los mapas depende del internet, se hace en paralelo para mejorar rendimiento.**
+### 4. **MAPAS & HISTOGRAMAS**: 
+En este punto se crean los respectivos mapas e histogramas. *En esta versión la generación de mapas depende del servidor arcgisonline. Por tanto, por ahora SE NECESITA INTERNET PARA QUE SE GENEREN LOS MAPAS*. **El tiempo que demora la generación de los mapas depende del internet, se hace en paralelo para mejorar rendimiento.**
 
 ```bash
 ...loading maps: 20200801

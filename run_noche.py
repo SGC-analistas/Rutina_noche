@@ -99,7 +99,7 @@ if __name__ == "__main__":
         fecha = input("\n\tfecha YYYYMMDD:  ")
         if len(fecha) == 8:
             fecha_ok = True
-            run(path, fecha, mode='prueba')
+            run(path, fecha, mode='prueba') #mode : prueba o mode : noche
         else:
             os.system('cls' if os.name == 'nt' else 'clear')
             print("digito mal la fecha. Intente de nuevo")

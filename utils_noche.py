@@ -396,7 +396,7 @@ def correo_noche(path, date, mode='prueba'):         #enviar correos mode ='prue
     email_sender, passw_sender = data_sender[0], data_sender[1] 
     
     if mode == 'prueba':
-        with open(f"{path}/correo/destinatario_prueba.json", "r") as json_file:  data = json.load(json_file)
+        with open(f"{path}/correo/destinatario_noche_prueba.json", "r") as json_file:  data = json.load(json_file)
     elif mode == 'noche':
         with open(f"{path}/correo/destinatario_noche.json", "r") as json_file:  data = json.load(json_file)
     else:
