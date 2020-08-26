@@ -148,11 +148,11 @@ def histograma(path, network,f):      #crear histogramas
     im = np.array(im).astype(np.float) / 255
     fig.figimage(im, fig.bbox.xmax - width -60, fig.bbox.ymax - height-20)
     
-    im2 = Image.open(f'{path}/logos/logo_MIN.png')
-    im2.thumbnail((1059,481), Image.ANTIALIAS)
-    width2, height2= im2.size[0],im2.size[1]
-    im2 = np.array(im2).astype(np.float) / 255
-    fig.figimage(im2, fig.bbox.xmax - width2 -60, height2)
+    # im2 = Image.open(f'{path}/logos/logo_MIN.png')
+    # im2.thumbnail((1059,481), Image.ANTIALIAS)
+    # width2, height2= im2.size[0],im2.size[1]
+    # im2 = np.array(im2).astype(np.float) / 255
+    # fig.figimage(im2, fig.bbox.xmax - width2 -60, height2)
 
     index = np.arange(len(estaciones))
     
