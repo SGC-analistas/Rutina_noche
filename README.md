@@ -9,21 +9,21 @@ Asegurate de hacer lo siguiente para poder correr basemap, para que se pueda abr
 Se corre en sistemas linux.
 
 
-#### Servidor SMTP
+#### - Servidor SMTP
 Tener un servidor SMTP *(Simple Mail Transfer Protocol)* el cual es un protocolo básico que permite que los emails viajen a través de Internet. 
 
-#### libgeos
+#### - libgeos
 ```bash
 sudo apt-get install libgeos-dev #para basemap
 cd /usr/lib
 sudo ln -s libgeos-3.3.3.so libgeos.so
 sudo ln -s libgeos-3.3.3.so libgeos.so.1
 ```
-#### evince
+#### - evince
 ```bash
 sudo apt-get install evince # para abrir pdfs
 ```
-#### libreoffice 
+#### - libreoffice 
 ```bash
 sudo apt install libreoffice #para abrir excel
 
