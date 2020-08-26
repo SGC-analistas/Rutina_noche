@@ -25,7 +25,7 @@ sudo apt-get install evince # para abrir pdfs
 ```
 #### - libreoffice 
 ```bash
-sudo apt install libreoffice #para abrir excel
+sudo apt-get install libreoffice #para abrir excel
 
 ```
 
