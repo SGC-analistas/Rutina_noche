@@ -78,21 +78,21 @@ Para correr la rutina de la noche ejecute la siguiente linea
 python run_noche.py
 ```
 
-### 1. **FECHA**: 
+### 1. **Fecha**: 
 Solicita la fecha para ver el funcionamiento de estaciones en ese día.
 
 ```bash
 fecha YYYYMMDD:  20200801
 ```
 
-### 2. **JSON**:
+### 2. **Json**:
  Una vez digitada empezará a cargar el *archivo json*. **El tiempo que demora la generación del archivo depende del número de gaps en las estaciones en las distintas redes. En general, demora de 2 a 3 minutos.**. *Se hizo lo posible por disminuir el tiempo calculando los porcentajes en paralelo.*
 
 ```bash
 ...loading json: 20200801
 ```
 
-### 3. **TXT**: 
+### 3. **Txt**: 
 De manera inmediata, con el editor *nano* se abren los *archivos txt* de las respectivas redes. En este punto se puede revisar que los porcentajes de las estaciones concuerden con el checklist. En caso de que todo este bien se hace lo siguiente:
 
 ```bash
@@ -104,7 +104,7 @@ Ctrl + x            # para salir
 
 Luego, se abre el siguiente *archivo txt* de la siguiente red. Así hasta terminar las respectivas redes.
 
-### 4. **MAPAS & HISTOGRAMAS**: 
+### 4. **Mapas & histogramas**: 
 En este punto se crean los respectivos mapas e histogramas. *En esta versión la generación de mapas depende del servidor arcgisonline. Por tanto, por ahora SE NECESITA INTERNET PARA QUE SE GENEREN LOS MAPAS*. **El tiempo que demora la generación de los mapas depende del internet, se hace en paralelo para mejorar rendimiento.**
 
 ```bash
@@ -115,7 +115,7 @@ Luego, de manera inmediata se abre un *archivo pdf*. El único objetivo de este 
 
 ![map_noche.png](images/map_noche.png)
 
-### 5. **EXCEL**: 
+### 5. **Excel**: 
 Se abren dos archivos excel:
 
     - FUNDIARIO_GENE.xls : Archivo que guarda el historial de funcionamiento de la red.
@@ -125,7 +125,7 @@ La idea es copiar el porcentaje de funcionamiento de las estaciones de la RSNC d
 
 Una vez todo este bien, cerrar los archivos guardando los cambios.
 
-### 6. **CORREO**:
+### 6. **Correo**:
 Se envian los correos. Aparece lo siguiente en la terminal:
 
 ```bash
@@ -134,6 +134,8 @@ Se envian los correos. Aparece lo siguiente en la terminal:
 ```
 
 En caso de *1 [si]* se envían los respectivos correos  a los destinatarios según el archivo *destinatario_noche.json* en la ruta noche_store/correo. 
+
+![map_noche.png](images/correo_noche.png)
 
 En caso de *0 [no]*  aparece lo siguiente:
 
