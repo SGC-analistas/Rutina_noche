@@ -86,10 +86,11 @@ cd /opt/Rutina_Noche/
 
 Allí encuentra dos carpetas importantes: 
 
-SGC_NOCHE : REPOSITORIO QUE CONTIENE LA RUTINA DE LA NOCHE
-rutina_noche : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
+**SGC_NOCHE** : REPOSITORIO QUE CONTIENE LA RUTINA DE LA NOCHE
 
-![txt_noche.png](images/carpeta_principal.png)
+**rutina_noche** : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
+
+![carpeta_principal.png](images/carpeta_principal.png)
 
 ### 1. Activar el ambiente de trabajo
 
@@ -100,7 +101,7 @@ rutina_noche : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
 
 A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
 
-![txt_noche.png](images/activar_ambiente.png)
+![activar_ambiente.png](images/activar_ambiente.png)
 
 Luego de activar el ambiente, nos diríjimos al repositorio SGC_NOCHE
 
