@@ -2,8 +2,10 @@
 
 Rutina realizada para enviar correos con el funcionamiento de las estaciones de la RSNC, RNAC, DRL, SUB, INTER
 
-## 1. Instalación en linux
 **SI ESTA EN EL PROC 4, NO ES NECESARIO REVISAR LA SECCIÓN DE INSTALACIÓN**
+
+## 1. Instalación en linux
+
 Asegurate de hacer lo siguiente para poder correr basemap, para que se pueda abrir pdfs con evince y los excel con libreoffice.
 
 ### Requerimientos previos
