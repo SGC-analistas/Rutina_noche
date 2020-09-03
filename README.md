@@ -3,11 +3,14 @@
 Rutina realizada para enviar correos con el funcionamiento de las estaciones de la RSNC, RNAC, DRL, SUB, INTER
 
 ## 1. Instalación en linux
+**SI ESTA EN EL PROC 4, NO ES NECESARIO REVISAR LA SECCIÓN DE INSTALACIÓN**
 Asegurate de hacer lo siguiente para poder correr basemap, para que se pueda abrir pdfs con evince y los excel con libreoffice.
 
 ### Requerimientos previos
 Se corre en sistemas linux.
 
+### - Python
+Python Versión 3.6 o Versión 3.7
 
 #### - Servidor SMTP
 Tener un servidor SMTP *(Simple Mail Transfer Protocol)* el cual es un protocolo básico que permite que los emails viajen a través de Internet. 
@@ -58,25 +61,60 @@ conda activate noche_env
 
 ### 2. noche_store:
 
-    - correo
-    - excel
-    - fonts
-    - histogramas
-    - jsons
-    - logos
-    - maps
-    - on_stations
-    - pdf_noche
-    - problemas
-    - txt
+    - correo: Carpeta donde se guarda los archivos para enviar correos: destinatarios, formatos de mensajes y las credenciales de rsncol
+    - excel: Carpeta donde se guarda los 2 excel que se envían: FUNDIARIO_GENE.xls y INFORMENOCHE2.xls. Este último archivo debe estar actualizado a la fecha que se vaya a correr
+    - fonts: Carpeta donde se guarda las fuentes del SGC
+    - histogramas: Carpeta donde se guarda los pdfs de histogramas
+    - jsons: Carpeta donde se guarda los jsons que se generan
+    - logos: Carpeta donde se guarda los logos que se adicionan en los pdfs
+    - maps: Carpeta donde se guarda los pdfs de mapas
+    - on_stations: CARPETA DONDE SE GUARDAN LOS ARCHIVOS .in QUE CONTIENE LAS ESTACIONES A LAS QUE SE VA A CALCULAR LA RUTINA DE LA NOCHE
+    - pdf_noche: Carpeta donde se guarda los pdfs que observan los analistas al correr la noche
+    - problemas: Carpeta donde se guarda los problemas que se generan 
+    - txt: Carpeta donde se guarda los txt de funcionamiento
 
 
-## 3. Demo
-Para correr la rutina de la noche ejecute la siguiente linea
+## 3. Demostración en el proc4
+
+Desde cualquier usuario del proc4, puede correr la rutina de la noche. 
+
+Diríjase a la siguiente ruta 
+
+```bash
+cd /opt/Rutina_Noche/
+```
+
+Allí encuentra dos carpetas importantes: 
+
+SGC_NOCHE : REPOSITORIO QUE CONTIENE LA RUTINA DE LA NOCHE
+rutina_noche : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
+
+![txt_noche.png](images/carpeta_principal.png)
+
+### 1. Activar el ambiente de trabajo
+
+```bash
+    conda deactivate #Desactivar ambiente por si hay un ambiente de anaconda activo
+    source rutina_noche/bin/activate
+```
+
+A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
+
+![txt_noche.png](images/activar_ambiente.png)
+
+Luego de activar el ambiente, nos diríjimos al repositorio SGC_NOCHE
+
+```bash
+    cd SGC_NOCHE
+```
+
+Dentro del repositorio, va a encontrar los archivos y carpetas necesarias para correr la rutina de la noche. Principalmente, nuestro interés esta en el archivo **run_noche.py**. Para ejecutarlo:
 
 ```bash
 python run_noche.py
 ```
+
+**Nota** : Recuerde que en /noche_store/on_stations estan los archivos.in donde pueden añadir y eliminar estaciones de la respectiva red.
 
 ### 1. **Fecha**: 
 Solicita la fecha para ver el funcionamiento de estaciones en ese día.
@@ -91,6 +129,8 @@ fecha YYYYMMDD:  20200801
 ```bash
 ...loading json: 20200801
 ```
+
+**Nota** : Si el archivo.json ya ha sido creado, el pregunta si lo queire volver a crear, o quiere continuar con la información que ya existe.
 
 ### 3. **Txt**: 
 De manera inmediata, con el editor *nano* se abren los *archivos txt* de las respectivas redes. En este punto se puede revisar que los porcentajes de las estaciones concuerden con el checklist. En caso de que todo este bien se hace lo siguiente:
