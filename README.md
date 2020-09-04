@@ -64,20 +64,20 @@ conda activate noche_env
 
 ### 2. noche_store:
 
-- correo: Carpeta donde se guarda los archivos para enviar correos: destinatarios,
+- **correo**: Carpeta donde se guarda los archivos para enviar correos: destinatarios,
             formatos de mensajes y las credenciales de rsncol
-- excel: Carpeta donde se guarda los 2 excel que se envían: FUNDIARIO_GENE.xls y INFORMENOCHE2.xls. 
+- **excel**: Carpeta donde se guarda los 2 excel que se envían: FUNDIARIO_GENE.xls y INFORMENOCHE2.xls. 
             Este último archivo debe estar actualizado a la fecha que se vaya a correr
-- fonts: Carpeta donde se guarda las fuentes del SGC
-- histogramas: Carpeta donde se guarda los pdfs de histogramas
-- jsons: Carpeta donde se guarda los jsons que se generan
-- logos: Carpeta donde se guarda los logos que se adicionan en los pdfs
-- maps: Carpeta donde se guarda los pdfs de mapas
-- on_stations: CARPETA DONDE SE GUARDAN LOS ARCHIVOS .in 
+- **fonts**: Carpeta donde se guarda las fuentes del SGC
+- **histogramas**: Carpeta donde se guarda los pdfs de histogramas
+- **jsons**: Carpeta donde se guarda los jsons que se generan
+- **logos**: Carpeta donde se guarda los logos que se adicionan en los pdfs
+- **maps**: Carpeta donde se guarda los pdfs de mapas
+- **on_stations**: CARPETA DONDE SE GUARDAN LOS ARCHIVOS .in 
                 QUE CONTIENE LAS ESTACIONES A LAS QUE SE VA A CALCULAR LA RUTINA DE LA NOCHE
-- pdf_noche: Carpeta donde se guarda los pdfs que observan los analistas al correr la noche
-- problemas: Carpeta donde se guarda los problemas que se generan 
-- txt: Carpeta donde se guarda los txt de funcionamiento
+- **pdf_noche**: Carpeta donde se guarda los pdfs que observan los analistas al correr la noche
+- **problemas**: Carpeta donde se guarda los problemas que se generan 
+- **txt**: Carpeta donde se guarda los txt de funcionamiento
 
 
 ## 3. Demostración en el proc4
