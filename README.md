@@ -100,7 +100,10 @@ Allí encuentra dos carpetas importantes:
 
 **- rutina_noche** : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
 
-![carpeta_principal.png](images/carpeta_principal.png)
+<p align="center">
+<img src="images/carpeta_principal.png" width="600">
+</p>
+
 
 ### 1. Activar el ambiente de trabajo
 
