@@ -1,5 +1,5 @@
 
-<p align="center"><img src="images/sgc_logo.png" width="400"></p>
+<p align="center"><img src="images/sgc_logo.png" width="400"/></p>
 
 # SGC_noche 
 
