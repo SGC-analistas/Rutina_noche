@@ -101,7 +101,7 @@ Allí encuentra dos carpetas importantes:
 **- rutina_noche** : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
 
 <p align="center">
-<img src="images/carpeta_principal.png" width="600">
+<img src="images/carpeta_principal.png" width="500">
 </p>
 
 
@@ -113,7 +113,9 @@ source rutina_noche/bin/activate
 
 A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
 
-![activar_ambiente.png](images/activar_ambiente.png)
+<p align="center">
+<img src="images/activar_ambiente.png" width="500">
+</p>
 
 Luego de activar el ambiente, nos diríjimos al repositorio SGC_NOCHE
 
@@ -153,7 +155,9 @@ Ctrl + o  | Enter   # Para guardar
 Ctrl + x            # para salir
 ```
 
-![txt_noche.png](images/txt_noche.png)
+<p align="center">
+<img src="images/txt_noche.png" width="500">
+</p>
 
 Luego, se abre el siguiente *archivo txt* de la siguiente red. Así hasta terminar las respectivas redes.
 
@@ -166,7 +170,9 @@ En este punto se crean los respectivos mapas e histogramas. *En esta versión la
 
 Luego, de manera inmediata se abre un *archivo pdf*. El único objetivo de este es que el analista sea capaz de visualizar  en una sola pasada todos los mapas y todos los histogramas de las redes. Si todo esta bien solo cerrar el pdf.
 
-![map_noche.png](images/map_noche.png)
+<p align="center">
+<img src="images/map_noche.png" width="500">
+</p>
 
 ### 5. **Excel**: 
 Se abren dos archivos excel:
@@ -174,7 +180,9 @@ Se abren dos archivos excel:
     - FUNDIARIO_GENE.xls : Archivo que guarda el historial de funcionamiento de la red.
     - INFORMENOCHE2.xls : Archivo que contiene el funcionamiento del presente día en que se corre la rutina.
 
-![fundiario.png](images/fundiario.png) ![informenoche.png](images/informenoche.png)
+<p align="center">
+<img src="images/fundiario.png" width="500"><img src="images/informenoche.png" width="500">
+</p>
 
 La idea es copiar el porcentaje de funcionamiento de las estaciones de la RSNC del archivo INFORMENOCHE2.xls en la respectiva fecha del archivo FUNDIARIO_GENE.xls. Revisar que el orden de las estaciones corresponda en cada excel. 
 
@@ -190,7 +198,9 @@ Se envian los correos. Aparece lo siguiente en la terminal:
 
 En caso de *1 [si]* se envían los respectivos correos  a los destinatarios según el archivo *destinatario_noche.json* en la ruta noche_store/correo. 
 
-![map_noche.png](images/correo_noche.png)
+<p align="center">
+<img src="images/correo_noche.png" width="500">
+</p>
 
 En caso de *0 [no]*  aparece lo siguiente:
 
