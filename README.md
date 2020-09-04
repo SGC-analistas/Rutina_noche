@@ -163,6 +163,8 @@ Se abren dos archivos excel:
     - FUNDIARIO_GENE.xls : Archivo que guarda el historial de funcionamiento de la red.
     - INFORMENOCHE2.xls : Archivo que contiene el funcionamiento del presente día en que se corre la rutina.
 
+![fundiario.png](images/fundiario.png) ![informenoche.png](images/informenoche.png)
+
 La idea es copiar el porcentaje de funcionamiento de las estaciones de la RSNC del archivo INFORMENOCHE2.xls en la respectiva fecha del archivo FUNDIARIO_GENE.xls. Revisar que el orden de las estaciones corresponda en cada excel. 
 
 Una vez todo este bien, cerrar los archivos guardando los cambios.
@@ -189,3 +191,9 @@ En caso de *0 [no]*  aparece lo siguiente:
 En caso de *1 [si]* se abre un *archivo txt* donde puede escribir cuál es el problema. Luego Cntrl + O para guardar y Cntrl + x para guardar. Luego se envia un correo con el problema a los destinatarios según el archivo *destinatario_problema.json* en la ruta noche_store/correo.
 
  En caso de *0 [no]*  se anula todo, y termina la rutina.
+
+ ## Autores
+ - Ángel Daniel Agudelo adagudelo@sgc.gov.co
+ - Emmanuel David Castillo ecastillo@sgc.gov.co
+ *creación: 2020/02/01*
+ *última actualización: 2020/09/03*
