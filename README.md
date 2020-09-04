@@ -56,11 +56,11 @@ conda activate noche_env
 
 ### 1. Archivos:
 
-- funest.py: Archivo que contiene la clase *SGC_Performance*. Tiene un método llamado *create_json* que genera los json de funcionamiento.
+- **funest.py**: Archivo que contiene la clase *SGC_Performance*. Tiene un método llamado *create_json* que genera los json de funcionamiento.
 
-- utils_noche.py: Contiene todas las funciones útiles que se usan para crear json,txt,mapas,excel, correos.
+- **utils_noche.py**: Contiene todas las funciones útiles que se usan para crear json,txt,mapas,excel, correos.
 
-- run_noche.py: Archivo de ejecución para la rutina de la noche. Importa las funciones de utils_noche.py
+- **run_noche.py**: Archivo de ejecución para la rutina de la noche. Importa las funciones de utils_noche.py
 
 ### 2. noche_store:
 
