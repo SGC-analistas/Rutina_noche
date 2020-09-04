@@ -1,7 +1,5 @@
 
-<p align="center">
-<img src="images/sgc_logo.png" width="400">
-</p>
+<p align="center"><img src="images/sgc_logo.png" width="400"></p>
 
 # SGC_noche 
 
@@ -100,9 +98,7 @@ Allí encuentra dos carpetas importantes:
 
 **- rutina_noche** : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
 
-<p align="center">
-<img src="images/carpeta_principal.png" width="600" title="carpeta_principal">
-</p>
+<p align="center"><img src="images/carpeta_principal.png" width="600" title="carpeta_principal"></p>
 
 
 ### 1. Activar el ambiente de trabajo
