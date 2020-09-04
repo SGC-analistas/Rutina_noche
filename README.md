@@ -1,3 +1,4 @@
+![logo](noche_store/logos/sgc_logo.png)  
 # SGC_noche v1.0
 
 Rutina realizada para enviar correos con el funcionamiento de las estaciones de la RSNC, RNAC, DRL, SUB, INTER
