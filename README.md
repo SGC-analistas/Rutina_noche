@@ -101,7 +101,7 @@ Allí encuentra dos carpetas importantes:
 **- rutina_noche** : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
 
 <p align="center">
-<img src="images/carpeta_principal.png" width="600">
+<img src="images/carpeta_principal.png" width="600" title="carpeta_principal">
 </p>
 
 
@@ -181,7 +181,7 @@ Se abren dos archivos excel:
     - INFORMENOCHE2.xls : Archivo que contiene el funcionamiento del presente día en que se corre la rutina.
 
 <p align="center">
-<img src="images/fundiario.png" width="200"><img src="images/informenoche.png" width="200">
+<img src="images/fundiario.png" width="350"><img src="images/informenoche.png" width="350">
 </p>
 
 La idea es copiar el porcentaje de funcionamiento de las estaciones de la RSNC del archivo INFORMENOCHE2.xls en la respectiva fecha del archivo FUNDIARIO_GENE.xls. Revisar que el orden de las estaciones corresponda en cada excel. 
