@@ -114,7 +114,7 @@ source rutina_noche/bin/activate
 A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
 
 <p align="center">
-<img src="images/activar_ambiente.png" width="600">
+<img src="images/activar_ambiente.png" width="600" title="activar_ambiente">
 </p>
 
 Luego de activar el ambiente, nos diríjimos al repositorio SGC_NOCHE
@@ -156,7 +156,7 @@ Ctrl + x            # para salir
 ```
 
 <p align="center">
-<img src="images/txt_noche.png" width="600">
+<img src="images/txt_noche.png" width="600" title="txt_noche">
 </p>
 
 Luego, se abre el siguiente *archivo txt* de la siguiente red. Así hasta terminar las respectivas redes.
@@ -171,7 +171,7 @@ En este punto se crean los respectivos mapas e histogramas. *En esta versión la
 Luego, de manera inmediata se abre un *archivo pdf*. El único objetivo de este es que el analista sea capaz de visualizar  en una sola pasada todos los mapas y todos los histogramas de las redes. Si todo esta bien solo cerrar el pdf.
 
 <p align="center">
-<img src="images/map_noche.png" width="600">
+<img src="images/map_noche.png" width="600" title="map_noche">
 </p>
 
 ### 5. **Excel**: 
@@ -181,7 +181,7 @@ Se abren dos archivos excel:
     - INFORMENOCHE2.xls : Archivo que contiene el funcionamiento del presente día en que se corre la rutina.
 
 <p align="center">
-<img src="images/fundiario.png" width="350"><img src="images/informenoche.png" width="350">
+<img src="images/fundiario.png" width="350" title="fundiario"><img src="images/informenoche.png" width="350" title="informenoche">
 </p>
 
 La idea es copiar el porcentaje de funcionamiento de las estaciones de la RSNC del archivo INFORMENOCHE2.xls en la respectiva fecha del archivo FUNDIARIO_GENE.xls. Revisar que el orden de las estaciones corresponda en cada excel. 
@@ -199,7 +199,7 @@ Se envian los correos. Aparece lo siguiente en la terminal:
 En caso de *1 [si]* se envían los respectivos correos  a los destinatarios según el archivo *destinatario_noche.json* en la ruta noche_store/correo. 
 
 <p align="center">
-<img src="images/correo_noche.png" width="600">
+<img src="images/correo_noche.png" width="600" title="correo_noche">
 </p>
 
 En caso de *0 [no]*  aparece lo siguiente:
