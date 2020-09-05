@@ -1,4 +1,4 @@
-![](images/sgc_logo.png)
+![](images/sgc_logo.png =100x50)
 
 # SGC_noche 
 
