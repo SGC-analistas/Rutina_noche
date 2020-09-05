@@ -1,4 +1,4 @@
-![](images/sgc_logo.png =100x50)
+![](images/sgc_logo.png)<!-- .element height="50%" width="50%" -->
 
 # SGC_noche 
 
