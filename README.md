@@ -165,9 +165,7 @@ En este punto se crean los respectivos mapas e histogramas. *En esta versión la
 
 Luego, de manera inmediata se abre un *archivo pdf*. El único objetivo de este es que el analista sea capaz de visualizar  en una sola pasada todos los mapas y todos los histogramas de las redes. Si todo esta bien solo cerrar el pdf.
 
-<p align="center">
 ![map_noche](images/map_noche.png)
-</p>
 
 ### 5. **Excel**: 
 Se abren dos archivos excel:
