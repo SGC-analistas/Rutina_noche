@@ -1,4 +1,4 @@
-![sgc_logo](images/sgc_logo.png)<!-- .element width="800"-->
+![](images/sgc_logo.png)<!-- .element height="50%" width="50%" -->
 
 # SGC_noche 
 
@@ -97,8 +97,7 @@ Allí encuentra dos carpetas importantes:
 
 **- rutina_noche** : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
 
-![carpeta_principal](images/carpeta_principal.png)<!-- .element height="600" width="376" -->
-<!-- <p align="center"><img src="images/carpeta_principal.png" width="600" title="carpeta_principal"/></p> -->
+<p align="center"><img src="images/carpeta_principal.png" width="600" title="carpeta_principal"/></p>
 
 
 ### 1. Activar el ambiente de trabajo
@@ -109,8 +108,9 @@ source rutina_noche/bin/activate
 
 A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
 
-![activar_ambiente](images/activar_ambiente.png)<!-- .element height="600" width="376" -->
-<!-- <p align="center"><img src="images/activar_ambiente.png" width="600" title="activar_ambiente"/></p> -->
+<p align="center">
+<img src="images/activar_ambiente.png" width="600" title="activar_ambiente"/>
+</p>
 
 Luego de activar el ambiente, nos diríjimos al repositorio SGC_NOCHE
 
@@ -150,8 +150,9 @@ Ctrl + o  | Enter   # Para guardar
 Ctrl + x            # para salir
 ```
 
-![txt_noche](images/txt_noche.png)<!-- .element height="600" width="376" -->
-<!-- <p align="center"><img src="images/txt_noche.png" width="600" title="txt_noche"/></p> -->
+<p align="center">
+<img src="images/txt_noche.png" width="600" title="txt_noche"/>
+</p>
 
 Luego, se abre el siguiente *archivo txt* de la siguiente red. Así hasta terminar las respectivas redes.
 
@@ -169,12 +170,12 @@ Luego, de manera inmediata se abre un *archivo pdf*. El único objetivo de este 
 ### 5. **Excel**: 
 Se abren dos archivos excel:
 
-- **FUNDIARIO_GENE.xls** : Archivo que guarda el historial de funcionamiento de la red.
-- **INFORMENOCHE2.xls** : Archivo que contiene el funcionamiento del presente día en que se corre la rutina.
+    - FUNDIARIO_GENE.xls : Archivo que guarda el historial de funcionamiento de la red.
+    - INFORMENOCHE2.xls : Archivo que contiene el funcionamiento del presente día en que se corre la rutina.
 
-![fundiario](images/fundiario.png)<!-- .element height="600" width="376" -->
-![informenoche](images/informenoche.png)<!-- .element height="600" width="376" -->
-<!-- <p align="center"><img src="images/fundiario.png" width="350" title="fundiario"/><img src="images/informenoche.png" width="350" title="informenoche"/></p> -->
+<p align="center">
+<img src="images/fundiario.png" width="350" title="fundiario"/><img src="images/informenoche.png" width="350" title="informenoche"/>
+</p>
 
 La idea es copiar el porcentaje de funcionamiento de las estaciones de la RSNC del archivo INFORMENOCHE2.xls en la respectiva fecha del archivo FUNDIARIO_GENE.xls. Revisar que el orden de las estaciones corresponda en cada excel. 
 
@@ -190,8 +191,9 @@ Se envian los correos. Aparece lo siguiente en la terminal:
 
 En caso de *1 [si]* se envían los respectivos correos  a los destinatarios según el archivo *destinatario_noche.json* en la ruta noche_store/correo. 
 
-![correo_noche](images/correo_noche.png)
-<!-- <p align="center"><img src="images/correo_noche.png" width="600" title="correo_noche"/></p> -->
+<p align="center">
+<img src="images/correo_noche.png" width="600" title="correo_noche"/>
+</p>
 
 En caso de *0 [no]*  aparece lo siguiente:
 
