@@ -104,7 +104,7 @@ Allí encuentra dos carpetas importantes:
 ### 1. Activar el ambiente de trabajo
 
 ```bash
-source rutina_noche/bin/activate
+source /opt/Rutina_Noche/rutina_noche/bin/activate
 ```
 
 A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
@@ -115,7 +115,7 @@ A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte i
 Luego de activar el ambiente, nos diríjimos al repositorio SGC_NOCHE
 
 ```bash
-cd SGC_noche
+cd /opt/Rutina_Noche/SGC_noche
 ```
 
 Dentro del repositorio, va a encontrar los archivos y carpetas necesarias para correr la rutina de la noche. Principalmente, nuestro interés esta en el archivo **run_noche.py**. Para ejecutarlo:
