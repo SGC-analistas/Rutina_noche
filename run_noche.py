@@ -29,7 +29,7 @@ def run (path, fecha, mode = 'prueba'):                 #enviar correos mode ='p
         if os.path.isfile(json_file) == True:
             condicion= True
             while condicion == True:
-                print(Fore.RED + f"\nEl json ya existe!, ¿Desea crear un nuevo json?")
+                print(Fore.RED + f"\nEl json ya existe!,   Desea crear un nuevo json?")
                 print(Fore.GREEN + "\t 1","[si]","    ",Fore.RED + "0","[no]"  )
                 p = input()
                 if p == "1":

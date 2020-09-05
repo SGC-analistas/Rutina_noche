@@ -49,12 +49,12 @@ def edit_fun(path, f):                #crear txt a partir del .json
         for result in data:
             
             if result["administrador"]==admin and result["estacion"] not in sta_fuera:
-                if (str(result["estacion"])+str(result["net"])) not in sta_com: 
+                if (str(result["estacion"])+str(result["localizacion"])) not in sta_com: 
                     if float(result["valor"]) > 100:
                         valor=100
                     else:
                         valor=float(result["valor"])
-                    sta_com.append(str(result["estacion"])+str(result["net"]))
+                    sta_com.append(str(result["estacion"])+str(result["localizacion"]))
                     v.append([result["estacion"],result["longitud"],result["latitud"],result["net"],valor,result["#Gaps"],result["localizacion"]])
                 else: continue
                 
@@ -68,7 +68,8 @@ def edit_fun(path, f):                #crear txt a partir del .json
                 estacion = v2[e][0]
                 net = v2[e][3]
                 gaps = v2[e][5]
-                es += str(long).ljust(11," ")+", "+str(lat).ljust(10," ")+","+str(valor).rjust(7," ")+",  "+str(gaps).rjust(3," ")+", "+str(estacion).ljust(5," ")+", "+str(net)+"\n"
+                loc = v2[e][6]
+                es += str(long).ljust(11," ")+", "+str(lat).ljust(10," ")+","+str(valor).rjust(7," ")+",  "+str(gaps).rjust(3," ")+", "+str(estacion).ljust(5," ")+", "+str(loc)+"\n"
 
             func.write(es)
             func.close()
@@ -82,7 +83,8 @@ def edit_fun(path, f):                #crear txt a partir del .json
                 estacion = v[e][0]
                 loc = v[e][6]
                 gaps = v[e][5]
-                es += str(long).ljust(11," ")+", "+str(lat).ljust(10," ")+","+str(valor).rjust(7," ")+",  "+str(gaps).rjust(3," ")+", "+str(estacion).ljust(5," ")+", "+str(loc)+"\n"
+                net = v[e][3]
+                es += str(long).ljust(11," ")+", "+str(lat).ljust(10," ")+","+str(valor).rjust(7," ")+",  "+str(gaps).rjust(3," ")+", "+str(estacion).ljust(5," ")+", "+str(net)+"\n"
             func.write(es)
             func.close()
 
