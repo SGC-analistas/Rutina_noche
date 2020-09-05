@@ -1,4 +1,4 @@
-![sgc_logo](images/sgc_logo.png)<!-- .element width="800"-->
+![SGC](images/sgc_logo.png)<!-- .element width="700"-->
 
 # SGC_noche 
 
@@ -173,6 +173,7 @@ Se abren dos archivos excel:
 - **INFORMENOCHE2.xls** : Archivo que contiene el funcionamiento del presente día en que se corre la rutina.
 
 ![fundiario](images/fundiario.png)<!-- .element height="600" width="376" -->
+
 ![informenoche](images/informenoche.png)<!-- .element height="600" width="376" -->
 <!-- <p align="center"><img src="images/fundiario.png" width="350" title="fundiario"/><img src="images/informenoche.png" width="350" title="informenoche"/></p> -->
 
@@ -205,6 +206,7 @@ En caso de *1 [si]* se abre un *archivo txt* donde puede escribir cuál es el pr
  En caso de *0 [no]*  se anula todo, y termina la rutina.
 
  ## Autores
+
  - Ángel Daniel Agudelo adagudelo@sgc.gov.co
  - Emmanuel David Castillo ecastillo@sgc.gov.co
 
