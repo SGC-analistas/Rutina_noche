@@ -13,6 +13,7 @@ V1.0   Autor: Ángel Agudelo | adagudelo@sgc.gov.co
 """
 
 from obspy.core.stream import _headonly_warning_msg
+from obspy.core.inventory import inventory
 from obspy.clients.fdsn import Client
 from obspy import UTCDateTime
 import concurrent.futures
@@ -20,6 +21,7 @@ import numpy as np
 import json
 import warnings
 import time
+import os
 
 class SGC_Performance(object):
     def __init__(self, ip_fdsn, port_fdsn, starttime,endtime):
@@ -32,14 +34,20 @@ class SGC_Performance(object):
     def sgc_client(self):
         return Client(self.ip_fdsn+":"+self.port_fdsn)
 
-    def __on_inv(self, stations, locations):
-        inv = self.sgc_client.get_stations(network="*",
-                            station=stations,
-                            location= locations,
-                            channel = "*Z",
-                            starttime=self.starttime,
-                            endtime=self.endtime,
-                            level="channel")
+    def __on_inv(self, stations, locations, channel="*Z"):
+
+        try:
+            inv = self.sgc_client.get_stations(network="*",
+                                station=stations,
+                                location= locations,
+                                channel = channel,
+                                starttime=self.starttime,
+                                endtime=self.endtime,
+                                level="channel")
+        except:
+            print('\n \n')
+            raise Exception(f"revisar: {stations}_{locations}_{channel}")
+            
         return inv
 
     def _read_in(self, in_path):
@@ -51,35 +59,27 @@ class SGC_Performance(object):
                 
         returns
         -------
-        strings for pass them to a client.get_Stations methods
+        all_data: list
+            List of four elements.
+            Three first elements correspond to str for pass them to a client.get_Stations methods
+            The last element correspond to network "RSNC,RNAC,SUB,DRL"
 
-        stations: str
-            stations for pass them to a client.get_Stations methods
-        locations: str
-            locations for pass them to a client.get_Stations methods
-        network: str
-            network for pass them to a client.get_Stations methods
         """
         read_stations = open(in_path,"r").readlines()
-        stations, locations, networks = [], [], []
+        stations, locations, channels, networks = [], [], [], []
         for station in read_stations:
             station_parameters = station.strip().split(",")
             first_letter = station_parameters[0][0:1]
             if str(first_letter) != "#":
-                sta, loc, net = station_parameters
+                sta, loc, cha, net = station_parameters
                 stations.append(sta.strip())
                 locations.append(loc.strip())
+                channels.append(cha.strip())
                 networks.append(net.strip())
 
-        stations = list(dict.fromkeys(stations))
-        locations = list(dict.fromkeys(locations))
-        networks = list(dict.fromkeys(networks))
+        all_data = list(zip(stations, locations, channels, networks))
 
-        stations = ','.join(stations )
-        locations = ','.join(locations)
-        networks = ','.join(networks)
-
-        return stations, locations, networks
+        return all_data
 
     def _inventories(self, in_dict):
         """
@@ -96,10 +96,18 @@ class SGC_Performance(object):
         """
         inv_dict = {}
         for net,in_path in in_dict.items():
-            stations, locations, _ = self._read_in(in_path)
-            inv = self.__on_inv(stations, locations)
-            inv_dict[net] = inv
-        
+            all_data = self._read_in(in_path)
+
+            sta_0, loc_0, cha_0, _ = all_data[0]
+            inv_0 = self.__on_inv(sta_0, loc_0, cha_0)
+            for data in all_data[1:]:
+                stations, locations, channels, _ = data
+                inv = self.__on_inv(stations, locations, channels)
+                inv_0 = inv_0.__add__(inv.copy())
+                
+            inv_dict[net] = inv_0.copy()
+            del inv_0
+
         return inv_dict
 
     def _get_availability_percentage(self, network, station, location, channel,
@@ -322,17 +330,19 @@ class SGC_Performance(object):
 if __name__ == "__main__":
     ip_fdsn = "http://10.100.100.232"
     port_fdsn = "8091"
-    starttime = UTCDateTime(2020,8,20,0,0,0)
-    endtime = UTCDateTime(2020,8,21,0,0,0)
+    starttime = UTCDateTime(2020,9,15,0,0,0)
+    endtime = UTCDateTime(2020,9,16,0,0,0)
     filename = 'prove.json'
     repository = os.path.dirname(os.path.abspath(__file__))
-    PATH = os.path.join(repository,'bin')
+    PATH = os.path.join(repository,'noche_store')
     in_dict = {'DRL':os.path.join(PATH,'on_stations/est_DRL.in'),
                 'RSNC':os.path.join(PATH,'on_stations/est_RSNC.in'),
                 'RNAC':os.path.join(PATH,'on_stations/est_RNAC.in'),
                 'INTER':os.path.join(PATH,'on_stations/est_INTER.in'),
-                'SUB':os.path.join(PATH,'on_stations/est_RSNC.in')}
+                'SUB':os.path.join(PATH,'on_stations/est_SUB.in')}
     sgc_perf = SGC_Performance(ip_fdsn, port_fdsn, starttime,endtime)
-    # sgc_perf.inventories(in_dict)
+    # inventories = sgc_perf._inventories(in_dict)
+    # read_in = sgc_perf._read_in(os.path.join(PATH,'on_stations/est_RSNC.in'))
+    # print(inventories)
     sgc_perf.create_json(filename,in_dict)
     # sgc_perf._get_percentage_dict(inv_dict)

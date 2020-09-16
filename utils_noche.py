@@ -45,9 +45,9 @@ def edit_fun(path, f):                #crear txt a partir del .json
         func = open(f"{path}/txt/func{admin}{f}.txt","w")
         sta_fuera = sta_f
         sta_com,v = [],[]
-        
+
         for result in data:
-            
+
             if result["administrador"]==admin and result["estacion"] not in sta_fuera:
                 if (str(result["estacion"])+str(result["localizacion"])) not in sta_com: 
                     if float(result["valor"]) > 100:
@@ -57,7 +57,7 @@ def edit_fun(path, f):                #crear txt a partir del .json
                     sta_com.append(str(result["estacion"])+str(result["localizacion"]))
                     v.append([result["estacion"],result["longitud"],result["latitud"],result["net"],valor,result["#Gaps"],result["localizacion"]])
                 else: continue
-                
+
         if admin != "INTER":
             v2 = sorted(v)
             es = ""
@@ -87,6 +87,7 @@ def edit_fun(path, f):                #crear txt a partir del .json
                 es += str(long).ljust(11," ")+", "+str(lat).ljust(10," ")+","+str(valor).rjust(7," ")+",  "+str(gaps).rjust(3," ")+", "+str(estacion).ljust(5," ")+", "+str(net)+"\n"
             func.write(es)
             func.close()
+
 
     """
     RSNC
