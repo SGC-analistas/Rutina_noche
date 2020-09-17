@@ -85,46 +85,12 @@ conda activate noche_env
 
 Desde cualquier usuario del proc4, puede correr la rutina de la noche. 
 
-Diríjase a la siguiente ruta 
 
 ```bash
-cd /opt/Rutina_Noche/
+bash /opt/Rutina_Noche/noche.sh
 ```
 
-Allí encuentra dos carpetas importantes: 
-
-**- SGC_noche** : REPOSITORIO QUE CONTIENE LA RUTINA DE LA NOCHE
-
-**- rutina_noche** : AMBIENTE VIRTUAL DE TRABAJO DE LA RUTINA DE LA NOCHE
-
-![carpeta_principal](images/carpeta_principal.png)<!-- .element height="600" width="376" -->
-<!-- <p align="center"><img src="images/carpeta_principal.png" width="600" title="carpeta_principal"/></p> -->
-
-
-### 1. Activar el ambiente de trabajo
-
-```bash
-source /opt/.venv_rutina_noche/bin/activate
-```
-
-A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
-
-![activar_ambiente](images/activar_ambiente.png)<!-- .element height="600" width="376" -->
-<!-- <p align="center"><img src="images/activar_ambiente.png" width="600" title="activar_ambiente"/></p> -->
-
-Luego de activar el ambiente, nos diríjimos al repositorio SGC_NOCHE
-
-```bash
-cd /opt/Rutina_Noche/SGC_noche
-```
-
-Dentro del repositorio, va a encontrar los archivos y carpetas necesarias para correr la rutina de la noche. Principalmente, nuestro interés esta en el archivo **run_noche.py**. Para ejecutarlo:
-
-```bash
-python run_noche.py
-```
-
-**Nota** : Recuerde que en /noche_store/on_stations estan los archivos.in donde pueden añadir y eliminar estaciones de la respectiva red.
+**Nota** : Recuerde que en opt/Rutina_Noche/SGC_noche/noche_store/on_stations estan los archivos.in donde pueden añadir y eliminar estaciones de la respectiva red.
 
 ### 1. **Fecha**: 
 Solicita la fecha para ver el funcionamiento de estaciones en ese día.
