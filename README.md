@@ -104,7 +104,7 @@ Allí encuentra dos carpetas importantes:
 ### 1. Activar el ambiente de trabajo
 
 ```bash
-source /opt/Rutina_Noche/rutina_noche/bin/activate
+source /opt/.venv_rutina_noche/bin/activate
 ```
 
 A continuación se activa el ambiente de trabajo. Para comprobarlo en la parte izquierda tiene que tener (rutina_noche)
