@@ -24,8 +24,7 @@ def run (path, fecha, mode = 'prueba'):                 #enviar correos mode ='p
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
 
-
-        json_file = os.path.join(path,'jsons',f'datasta{fecha}.json')
+        json_file = os.path.join(path,'jsons', f'datasta{fecha}.json')
         if os.path.isfile(json_file) == True:
             condicion= True
             while condicion == True:
@@ -70,18 +69,17 @@ def run (path, fecha, mode = 'prueba'):                 #enviar correos mode ='p
         print(f'...loading excel: {fecha}')
         no.info_excel(path,fecha)										#editar excel
 
-        
         condicion= True
         while condicion == True:
             # os.system('cls' if os.name == 'nt' else 'clear')
-            print("¿Desea enviar correos?")
+            print("Desea enviar correos?")
             print(Fore.GREEN + "\t 1","[si]","    ",Fore.RED + "0","[no]"  )
             p = input()
             if p == "1":
                 no.correo_noche(path,fecha,mode=mode)
                 break
             if p == "0":
-                print(Fore.RED +"¿Desea informar el problema?.")
+                print(Fore.RED +"Desea informar el problema?.")
                 print(Fore.GREEN + "\t 1","[si]","    ",Fore.RED + "0","[no]"  )
                 p = input()
                 if p == "1":
@@ -99,7 +97,7 @@ if __name__ == "__main__":
         fecha = input("\n\tfecha YYYYMMDD:  ")
         if len(fecha) == 8:
             fecha_ok = True
-            run(path, fecha, mode='prueba') #mode : prueba o mode : noche
+            run(path, fecha, mode='noche') #mode : prueba o mode : noche
         else:
             os.system('cls' if os.name == 'nt' else 'clear')
             print("digito mal la fecha. Intente de nuevo")
