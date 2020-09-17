@@ -178,4 +178,4 @@ En caso de *1 [si]* se abre un *archivo txt* donde puede escribir cuál es el pr
 
 *creación: 2020/02/01*
  
-*última actualización: 2020/09/03*
+*última actualización: 2020/09/17*
