@@ -421,7 +421,7 @@ def correo_noche(path, date, mode='prueba'):         #enviar correos mode ='prue
         if network == 'RSNC':  
             
             asunto=f'Formatos Noche {date}' 
-            mensaje=open(f'{path}/correo/mensaje_noche.html').read()%('RSNC, Sub-redes e Internaciones ')
+            mensaje=open(f'{path}/correo/mensaje_noche.html',encoding='utf-8').read()%('RSNC, Sub-redes e Internaciones ')
             addressee=RSNC_addressee
             
             fundiario= 'FUNDIARIO_GENE.xls'
@@ -446,7 +446,7 @@ def correo_noche(path, date, mode='prueba'):         #enviar correos mode ='prue
         if network=='RNAC': 
             
             asunto= f'Formatos Noche {date}'
-            mensaje=open(   f'{path}/correo/mensaje_noche.html').read()%('RNAC')
+            mensaje=open(   f'{path}/correo/mensaje_noche.html',encoding='utf-8').read()%('RNAC')
             addressee=RNAC_addressee
             
             histogram= f'hist_{network}_{date}.pdf'
@@ -463,7 +463,7 @@ def correo_noche(path, date, mode='prueba'):         #enviar correos mode ='prue
             
         if network=='DRL':  
             asunto=f'Formatos Noche Funcionamiento Estaciones Drummond {date}'
-            mensaje=open(   f'{path}/correo/mensaje_noche.html').read()%('DRUMMOND')
+            mensaje=open(   f'{path}/correo/mensaje_noche.html',encoding='utf-8').read()%('DRUMMOND')
             addressee=DRL_addressee
 
             histogram= f'hist_{network}_{date}.pdf'
@@ -518,7 +518,7 @@ def pdf_merger(path, date, input_paths):
 
 def correo_problema(path, date, mode='prueba'):
     
-    data_sender=open(f'{path}/correo/remitente_noche.txt','r' ).readlines() 
+    data_sender=open(f'{path}/correo/remitente_noche.txt','r').readlines() 
     email_sender, passw_sender = data_sender[0], data_sender[1]
 
     if mode == 'prueba':
@@ -534,7 +534,7 @@ def correo_problema(path, date, mode='prueba'):
 
     os.system(f'nano {path}/problemas/problema_{date}.txt')
     problema= open(f"{path}/problemas/problema_{date}.txt","r").read()
-    mensaje=open(   f'{path}/correo/mensaje_problema.html').read()%(f'{problema}')
+    mensaje=open(   f'{path}/correo/mensaje_problema.html', encoding='utf-8').read()%(f'{problema}')
     addressee=data[0]['CORREOS']
 
     list_files_to_email= [(f"noche_{date}.pdf",f"{path}/pdf_noche/noche_{date}.pdf")]
