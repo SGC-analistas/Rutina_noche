@@ -97,7 +97,7 @@ def edit_fun(path, f):                #crear txt a partir del .json
     """
     RNAC
     """
-    sta_fuera = ["CMOC1","CMOC2","CMOC3","CMOC4","CMOC5","CBETA","CGARZ","CIBA3","CLEJA","CNEIV","CPLAT","CPOP2","CPRAD","CSAGU","CSAL1"]
+    sta_fuera = ["CMOC1","CMOC2","CMOC3","CMOC4","CMOC5","CBETA","CGARZ","CIBA3","CNEIV","CPLAT","CPOP2","CPRAD","CSAGU","CSAL1"]
     txt(sta_fuera,"RNAC",f)
     """
     SUB REDES
