@@ -102,8 +102,11 @@ class SGC_Performance(object):
             inv_0 = self.__on_inv(sta_0, loc_0, cha_0)
             for data in all_data[1:]:
                 stations, locations, channels, _ = data
-                inv = self.__on_inv(stations, locations, channels)
-                inv_0 = inv_0.__add__(inv.copy())
+                try:
+                    inv = self.__on_inv(stations, locations, channels)
+                    inv_0 = inv_0.__add__(inv.copy())
+                except:
+                    print(f"NOT EXISTS: {stations}.{locations} in [{self.starttime}-{self.endtime}]")
                 
             inv_dict[net] = inv_0.copy()
             del inv_0
