@@ -6,6 +6,7 @@ Emmanuel C., Angel Daniel A.
 2020 I
 """
 import sys
+import time
 import json
 import os
 import glob
@@ -174,6 +175,7 @@ def histograma(path, network,f):      #crear histogramas
         plt.text(100, ie+0.1 , str(v), fontproperties=font_prop2)
         
     plt.savefig(f"{path}/histogramas/hist_{network}_{f}.pdf", format="pdf", quality=100)
+    time.sleep(3) #para darle tiempo de guardar
     return f"{path}/histogramas/hist_{network}_{f}.pdf"
     #~ os.system(f"evince -f {path}/histogramas/hist_{network}_{f}.pdf")
 
@@ -371,6 +373,8 @@ def func_map(path,network, date):    #crear mapa
 
     # plt.savefig(f'/home/ecastillo/git/SGC/SGC_noche/map_noche.png')
     plt.savefig(f'{path}/maps/map_{network}_{date}.pdf')
+    time.sleep(3) #para darle tiempo de guardar
+
     return f"{path}/maps/map_{network}_{date}.pdf"
     #~ os.system(f"evince -f {path}/maps/map_{network}_{date}.pdf")    
 
